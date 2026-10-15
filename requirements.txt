@@ -1,0 +1,4 @@
+pyvisa>=1.13
+pyvisa-py>=0.7
+PyYAML>=6
+pytest>=8

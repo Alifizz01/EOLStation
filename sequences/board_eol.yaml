@@ -1,0 +1,24 @@
+# Example end-of-line sequence for a simulated board with three rails.
+# Limits are illustrative, not from any real product specification.
+name: board_eol_v1
+station: EOL-ST01
+fixture: FX-0042
+serial_pattern: 'SN\d{6}'
+
+setup:
+  - {name: Operator load board, type: action, call: prompt, args: {message: "Place board in fixture and close lid"}}
+  - {name: Power on, type: action, call: power_on}
+
+main:
+  - {name: Rail 5V0, type: numeric, call: measure_rail, args: {rail: 5V0}, low: 4.85, high: 5.15, units: V, retries: 2}
+  - {name: Rail 3V3, type: numeric, call: measure_rail, args: {rail: 3V3}, low: 3.20, high: 3.40, units: V, retries: 2}
+  - {name: Rail 1V8, type: numeric, call: measure_rail, args: {rail: 1V8}, low: 1.746, high: 1.854, units: V, retries: 2}
+  - {name: Idle current, type: numeric, call: supply_current_ma, low: 140, high: 230, units: mA, comp: GELE}
+  - {name: PMIC present, type: passfail, call: component_present, args: {ref: U3_PMIC}, on_fail: continue}
+  - {name: ETH PHY present, type: passfail, call: component_present, args: {ref: U7_ETH_PHY}, on_fail: continue}
+  - {name: Connector present, type: passfail, call: component_present, args: {ref: J2_CONN}, on_fail: continue}
+  - {name: Firmware version, type: string, call: read_firmware, expected: "2.4.1"}
+
+cleanup:
+  - {name: Power off, type: action, call: power_off}
+  - {name: Operator unload board, type: action, call: prompt, args: {message: "Open lid and remove board"}}
