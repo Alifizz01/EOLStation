@@ -1,4 +1,32 @@
-# eol-sequencer
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/logo-dark.svg">
+    <img src="assets/logo.svg" alt="EOLStation" width="360">
+  </picture>
+</p>
+
+<p align="center">
+  <b>An end-of-line test station for boards, from sequence to yield report.</b><br>
+  YAML test sequences with Setup/Main/Cleanup, limits and retries, run against simulated boards through a simulated SCPI DAQ. Per-unit reports, yield, failure Pareto and Cpk.
+</p>
+
+<p align="center">
+  <a href="https://github.com/Alifizz01/EOLStation/actions/workflows/ci.yml"><img src="https://github.com/Alifizz01/EOLStation/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <img src="https://img.shields.io/badge/python-3.11%2B-3776AB" alt="python">
+  <img src="https://img.shields.io/badge/pytest-52%20tests-0A9EDC" alt="pytest">
+</p>
+
+<p align="center"><img src="docs/hero.png" alt="Failure Pareto and yield for a batch of 200 simulated boards" width="900"></p>
+
+> **Scope:** Simulated boards and instruments; modelled on NI TestStand concepts, not TestStand itself. Personal portfolio project, not affiliated with any employer.
+
+---
+
+## The problem
+
+On a production line the question is not only pass or fail, but why units fail, how often a retest rescues them, and whether a rail is drifting towards its limit. The station answers those after every batch.
+
+## Overview
 
 A small end-of-line production test sequencer in Python, modelled on the concepts of
 NI TestStand. It runs a YAML test sequence against simulated boards through a simulated
